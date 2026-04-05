@@ -115,8 +115,13 @@ public partial class Gen8bSeedFinderForm : Form
 
         var prev = abilityCombo.SelectedIndex;
         abilityCombo.Items.Clear();
-        abilityCombo.Items.AddRange(["Any", $"{a1} (1)", $"{a2} (2)"]);
-        abilityCombo.SelectedIndex = Math.Min(prev, abilityCombo.Items.Count - 1);
+
+        if (pi.Ability1 == pi.Ability2)
+            abilityCombo.Items.AddRange(["Any", a1]);
+        else
+            abilityCombo.Items.AddRange(["Any", $"{a1} (1)", $"{a2} (2)"]);
+
+        abilityCombo.SelectedIndex = Math.Clamp(prev, 0, abilityCombo.Items.Count - 1);
     }
 
     private void LoadNatureList()
