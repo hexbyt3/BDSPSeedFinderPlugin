@@ -308,13 +308,7 @@ public partial class Gen8bSeedFinderForm : Form
         bool isShiny = finalXor < 16;
         bool isSquare = finalXor == 0;
 
-        switch (shinyCriteria)
-        {
-            case 1 when isShiny: return false;      // Never
-            case 2 when !isShiny: return false;      // Always
-            case 3 when !isSquare: return false;     // Square
-            case 4 when !isShiny || isSquare: return false; // Star
-        }
+        if (shinyCriteria == 1 && !isShiny) return false; // Yes = must be shiny
 
         // IVs
         Span<int> ivs = stackalloc int[6];
