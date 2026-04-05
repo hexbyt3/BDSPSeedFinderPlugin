@@ -39,6 +39,7 @@ public partial class Gen8bSeedFinderForm : Form
         InitializeComponent();
         InitializePreviewPanel();
         LoadSpeciesList();
+        UpdateAbilityList();
         LoadNatureList();
         LoadTrainerData();
         FormClosing += (_, _) => _searchCts?.Cancel();
@@ -98,6 +99,24 @@ public partial class Gen8bSeedFinderForm : Form
         speciesCombo.Items.Add(new ComboItem("Cresselia", 488));
         speciesCombo.DisplayMember = "Text";
         speciesCombo.SelectedIndex = 0;
+        speciesCombo.SelectedIndexChanged += (_, _) => UpdateAbilityList();
+    }
+
+    private void UpdateAbilityList()
+    {
+        var species = GetSelectedSpecies();
+        if (species == 0)
+            return;
+
+        var pi = PersonalTable.BDSP[species, 0];
+        var names = GameInfo.Strings.abilitylist;
+        var a1 = names[pi.Ability1];
+        var a2 = names[pi.Ability2];
+
+        var prev = abilityCombo.SelectedIndex;
+        abilityCombo.Items.Clear();
+        abilityCombo.Items.AddRange(["Any", $"{a1} (1)", $"{a2} (2)"]);
+        abilityCombo.SelectedIndex = Math.Min(prev, abilityCombo.Items.Count - 1);
     }
 
     private void LoadNatureList()
