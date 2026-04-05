@@ -169,19 +169,19 @@ public partial class Gen8bSeedFinderForm : Form
         progressBar.Value = 0;
 
         var id32 = GetID32();
-        var maxResults = (int)maxResultsNum.Value;
+        var maxResults = (int)maxSeedsNum.Value;
         var shinyCriteria = shinyCombo.SelectedIndex;
         var natureCriteria = natureCombo.SelectedIndex - 1; // -1 = Any
         var abilityCriteria = abilityCombo.SelectedIndex; // 0=Any, 1=Ability1, 2=Ability2
 
         var ivRanges = new IVRange[]
         {
-            new((int)hpMinNum.Value, (int)hpMaxNum.Value),
-            new((int)atkMinNum.Value, (int)atkMaxNum.Value),
-            new((int)defMinNum.Value, (int)defMaxNum.Value),
-            new((int)spaMinNum.Value, (int)spaMaxNum.Value),
-            new((int)spdMinNum.Value, (int)spdMaxNum.Value),
-            new((int)speMinNum.Value, (int)speMaxNum.Value),
+            new((int)ivHpMin.Value, (int)ivHpMax.Value),
+            new((int)ivAtkMin.Value, (int)ivAtkMax.Value),
+            new((int)ivDefMin.Value, (int)ivDefMax.Value),
+            new((int)ivSpaMin.Value, (int)ivSpaMax.Value),
+            new((int)ivSpdMin.Value, (int)ivSpdMax.Value),
+            new((int)ivSpeMin.Value, (int)ivSpeMax.Value),
         };
 
         var token = _searchCts.Token;
