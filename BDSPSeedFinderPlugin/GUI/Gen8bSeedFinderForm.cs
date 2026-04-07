@@ -451,6 +451,10 @@ public partial class Gen8bSeedFinderForm : Form
         pk.WeightScalar = (byte)(xoro.NextUInt(0x81) + xoro.NextUInt(0x80));
 
         EncounterUtil.SetEncounterMoves(pk, pk.Version, 50);
+
+        // Apply a legal ball matching the Pokémon's color (PKHeX built-in behavior)
+        BallApplicator.ApplyBallLegalByColor(pk);
+
         pk.ResetPartyStats();
 
         return pk;
