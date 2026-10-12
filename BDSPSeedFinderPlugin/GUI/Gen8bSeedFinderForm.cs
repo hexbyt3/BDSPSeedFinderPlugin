@@ -409,7 +409,7 @@ public partial class Gen8bSeedFinderForm : Form
             OriginalTrainerFriendship = pi.BaseFriendship,
             Gender = gender,
             Nature = nature,
-            StatNature = nature,
+            StatAlignment = nature,
             Nickname = SpeciesName.GetSpeciesNameGeneration(species, _saveFileEditor.SAV.Language, 8),
         };
 
